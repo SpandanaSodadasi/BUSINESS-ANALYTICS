@@ -1,0 +1,75 @@
+---
+title: "Business Analytics Assignment-1"
+author: "Spandana Sodadasi"
+date: "2023-09-17"
+output:
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+```{r setup, include=TRUE}
+knitr::opts_chunk$set(echo = TRUE, comment = NULL)
+```
+
+#Installed the ISLR library using the install.packages() command and loading the package by using the library function.
+```{r}
+library(ISLR)
+library(ggplot2)
+View(Carseats)
+```
+
+#Printing the summary of the Carseats dataset.
+```{r}
+print(summary(Carseats))
+```
+
+#Understanding the data structure of carseats.
+```{r}
+names(Carseats)
+```
+
+```{r}
+str(Carseats)
+```
+
+```{r}
+head(Carseats)
+```
+
+#Number of Observation(rows) present in the dataset.
+```{r}
+nrow(Carseats)
+```
+
+#Maximum value of the advertising attribute.
+```{r}
+max(Carseats$Advertising)
+```
+
+#Calculating the IQR of the Price attribute.
+```{r}
+print(paste("Price IQR is", IQR(Carseats$Price)))
+```
+
+#Plotting the Sales variable aganist the Price variable.
+```{r}
+ggplot(Carseats, aes(x = Price, y = Sales), main = "Scatter Plot") +
+  geom_point() +
+  labs(title = "Scatter Plot of Sales vs Price",
+       x = "Price", y = "Sales") +
+  theme_minimal() +
+  geom_smooth(method = "lm", formula = y ~ x, color = "red",linetype = "dashed", se=FALSE)+
+  theme(plot.title = element_text(hjust = 0.5, face = "bold"))
+
+```
+
+In the scatter plot we can see a mild negative relationship between Price and Sales variables. In the further step we will calculate the correlation coefficient to have a better understanding of this relationship.
+
+#Calculating the correlation between Price and Sales attributes.
+```{r}
+cor(Carseats$Price,Carseats$Sales)
+```
+
+A correlation coefficient is -0.4449507 and the sign indicates a negative correlation between Price and Sales attributes. This means that if Price increases, Sales will tend to decrease.
+
